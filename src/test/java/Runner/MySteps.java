@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
+
 public class MySteps extends BaseTest {
     
 
@@ -19,10 +20,12 @@ public class MySteps extends BaseTest {
     }
 
     @When("Add {int} number of elements")
-    public void addNumberOfElements(int iteration) {
+    public void addNumberOfElements(int iteration) throws InterruptedException {
         for (int i=0; i<iteration;i++){
             clickElement(MainPage.addElementButton, "Add elemet button");
+            //Thread.sleep(2000);
         }
+        Thread.sleep(5000);
 
     }
 
