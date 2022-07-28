@@ -54,6 +54,7 @@ public class BaseTest {
                 System.out.println(e);
                return false;
         }
+
     }
 
     public boolean waitForElement(By locator, String eleName) {
