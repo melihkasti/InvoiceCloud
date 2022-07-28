@@ -1,9 +1,7 @@
 package Base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -74,6 +72,19 @@ public class BaseTest {
             System.out.println("Locator: " + locator.toString());
             //  log().info("Page Source ===>>> "+driver.get().getPageSource());
             return false;
+        }
+    }
+
+    public static void takeScreenShot(Scenario scenario) {
+
+        if (scenario.isFailed()) {
+            // Take a screenshot...
+            try {
+                final byte[] screenshot = ((TakesScreenshot) BaseTest.driver.get()).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", "Screen_Shoot"); // ... and embed it in the report.
+            } catch (WebDriverException e) {
+                e.printStackTrace();
+            }
         }
     }
 

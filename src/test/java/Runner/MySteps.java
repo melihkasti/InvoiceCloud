@@ -2,11 +2,15 @@ package Runner;
 
 import Base.BaseTest;
 import Pages.MainPage;
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+
+import java.io.IOException;
 
 
 public class MySteps extends BaseTest {
@@ -33,5 +37,11 @@ public class MySteps extends BaseTest {
     public void pageShouldShowElement(int expectedCount) {
        int  deleteButtonCount = getElements(MainPage.deleteElementButton).size();
        Assert.assertEquals(deleteButtonCount,expectedCount, "Delete button count doesnt match");
+    }
+
+    @After
+    public void afterScenario(Scenario scenario) throws IOException {
+        BaseTest.takeScreenShot(scenario);
+
     }
 }
